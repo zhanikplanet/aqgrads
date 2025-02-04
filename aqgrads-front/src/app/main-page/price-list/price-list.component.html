@@ -1,0 +1,18 @@
+<div class="price-list-container">
+    @for (item of items; track item.title) {
+    <div class="mb-4 p-8 flex items-center justify-center card">
+        <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+            <ng-template #header>
+                <img alt="Card" class="w-full" [src]="item.imgSrc"/>
+            </ng-template>
+            <ng-template #title><p class="text-align-center">{{item.title}}</p></ng-template>
+            <ng-template #subtitle><p class="text-align-center">{{item.subtitle}}</p></ng-template>
+            <ng-template #footer>
+                <div class="flex gap-4 mt-1">
+                    <p-button label="Жазылу" class="footer-button" styleClass="w-full" />
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+    }
+</div>
