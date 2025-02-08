@@ -1,0 +1,69 @@
+:host {
+    .sidebar-button {
+        padding-right: 20px;
+        padding-top: 20px;
+        position: fixed;
+        right: 0;
+        z-index: 1;
+    }
+
+    ::ng-deep .p-button {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(157 223 26);
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 50%;
+    }
+
+    ::ng-deep .p-button:hover {
+        border: none !important;
+        background-color: rgb(112, 168, 0) !important;
+        box-shadow: none !important;
+    }
+}
+
+::ng-deep .p-drawer {
+    background: black !important;
+}
+
+::ng-deep .closeButton {
+    right: 0;
+}
+
+.sidebar-content {
+    color: white;
+
+    li {
+        list-style: none;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.sidebar-links {
+    li {
+        padding-bottom: 15px;
+    }
+}
+
+.sidebar-languages {
+    position: fixed;
+    bottom: 0;
+
+    ul {
+        display: flex;
+        gap: 15px;
+    }
+}
+.sidebar-buttons{
+    display: flex;
+    justify-self:anchor-center;
+    gap: 20px;
+    position: fixed;
+    margin-bottom: 20%;
+    bottom: 0;
+}

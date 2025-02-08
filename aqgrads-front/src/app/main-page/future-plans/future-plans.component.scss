@@ -1,0 +1,10 @@
+@media (max-width:2560px) {
+    .jobalar-body{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .joba-card{
+        border: solid 2px #e0e6ed;
+    }
+}

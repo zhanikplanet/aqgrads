@@ -1,0 +1,93 @@
+:host{
+    color: aliceblue;
+}
+@media (max-width:2560px) 
+{
+    .footer-container {
+        color: var(--light-color);
+        width: 100%;
+        background-color: #333333;
+        z-index: 1;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30%;
+
+        .copy-right {
+            font-size: 24px;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 20px;
+
+            i {
+                text-align: center;
+                font-size: 30px;
+                width: 35px;
+                height: 35px;
+                border-radius: 30%;
+                border: 1px solid var(--light-color);
+            }
+        }
+    }
+
+    .games-ul,
+    .useful-links-ul {
+        text-decoration: underline;
+
+        li {
+            list-style: none;
+            padding-top: 30px;
+        }
+
+    }
+
+    .contact-ul {
+        li {
+            list-style: none;
+            padding-top: 30px;
+        }
+
+        .fas {
+            padding-right: 10px;
+        }
+    }
+
+    .h4 {
+        padding-top: 20px;
+        text-transform: uppercase;
+        font-family: var(--semi-bold-font);
+    }
+
+    .hr {
+        z-index: 2;
+        margin: 1rem 0;
+        border: 1px solid var(--light-color);
+        width: 90%;
+    }
+}
+@media (max-width:1024px) {
+    .row{
+        display: grid;
+        grid-template-columns: 10% 10% 10%;
+        gap: 20%;
+    }
+    .contact-ul{
+        width: 250px;
+    }
+    .social-media{
+        align-items: center;
+    }
+
+}
+@media (max-width:768px) {
+    .contact-ul{
+        font-size: smaller;
+        padding-right: 100px;
+    }
+
+}

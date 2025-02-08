@@ -1,0 +1,20 @@
+<div class="jobalar-container">
+    <div class="jobalar-header">
+        <p class="text-align-center"><strong class="fz-45">AqGrads жобалары</strong></p>
+    </div>
+    <div class="jobalar-body">
+        @for (item of items; track item.title) {
+            <div class="mb-4 p-8 flex items-center justify-center .joba-card">
+                <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+                    <ng-template #header>
+                        <img alt="Card" class="w-full" [src]="item.imgSrc"/>
+                    </ng-template>
+                    <ng-template #title><p class="text-align-center">{{item.title}}</p></ng-template>
+                    <div class="content">
+                        <p>{{item.text}}</p>
+                    </div>
+                </p-card>
+            </div>
+            }
+    </div>
+</div>

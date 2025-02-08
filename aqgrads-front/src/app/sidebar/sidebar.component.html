@@ -1,1 +1,28 @@
-<p>sidebar works!</p>
+<div class="sidebar-container">
+    <p-drawer [(visible)]="visible2" position="right">
+        <div class="sidebar-content">
+            <div class="sidebar-links">
+                <ul class="fz-18">
+                    <li>Жеке кабинет</li>
+                    <li>Біз туралы</li>
+                    <li>Тарифтік жоспар</li>
+                    <li>Қор жобалары</li>
+                </ul>
+            </div>
+            <div class="sidebar-buttons">
+                <p-button icon="pi pi-iconName" label="Кіру"></p-button>
+                <p-button icon="pi pi-iconName" label="Тіркелу"></p-button>
+            </div>
+            <div class="sidebar-languages">
+                <ul>
+                    <li><a href="">KZ</a></li>
+                    <li><a href="">RU</a></li>
+                </ul>
+            </div>
+        </div>
+    </p-drawer>
+
+    <p-button type="button" text="true" (click)="visible2 = true" class="sidebar-button">
+        <img src="/assets/svg/menu.svg" alt="menu">
+    </p-button>
+</div>

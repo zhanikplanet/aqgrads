@@ -1,6 +1,6 @@
 <div class="price-list-container">
     @for (item of items; track item.title) {
-    <div class="mb-4 p-8 flex items-center justify-center card">
+    <div class="mb-4 p-8 flex items-center justify-center price-card">
         <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
             <ng-template #header>
                 <img alt="Card" class="w-full" [src]="item.imgSrc"/>
