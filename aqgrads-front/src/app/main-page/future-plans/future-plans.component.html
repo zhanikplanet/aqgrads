@@ -1,20 +1,28 @@
-<div class="jobalar-container">
-    <div class="jobalar-header">
-        <p class="text-align-center"><strong class="fz-45">AqGrads жобалары</strong></p>
-    </div>
-    <div class="jobalar-body">
-        @for (item of items; track item.title) {
-            <div class="mb-4 p-8 flex items-center justify-center .joba-card">
-                <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
-                    <ng-template #header>
-                        <img alt="Card" class="w-full" [src]="item.imgSrc"/>
-                    </ng-template>
-                    <ng-template #title><p class="text-align-center">{{item.title}}</p></ng-template>
-                    <div class="content">
-                        <p>{{item.text}}</p>
-                    </div>
-                </p-card>
+<div class="future-plans-container" id="future-plans-section">
+    <h3 class="font-bold text-3xl text-center">Jobalar</h3>
+    <p class="text-center text-2xl mb-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus minima
+        ipsum architecto distinctio adipisci, amet facere debitis quidem ullam. Placeat necessitatibus perferendis alias
+        omnis id sit quae laborum earum, maiores architecto delectus atque vel unde porro. Molestiae, ut ab consequatur,
+        alias, omnis et incidunt saepe numquam labore quidem provident praesentium.
+    </p>
+    <div class="flex flex-col md:flex-row w-full max-w-6xl mx-auto">
+        <div class="md:w-1/3 flex flex-col p-4">
+            <button *ngFor="let tab of tabs let i=index" (click)="selectTab(i+1)" [ngClass]="{
+                        'bg-green-400 text-white shadow-lg': activeTab === i + 1,
+                        'bg-transparent shadow-md': activeTab !== i + 1,
+                    }" class="p-4 text-left font-semibold rounded-lg mb-4 transition duration-300">
+                {{tab.title}}
+            </button>
+        </div>
+
+        <div class="md:w-2/3 p-8">
+            <div *ngFor="let tab of tabs; let i = index">
+                <div *ngIf="activeTab=== i + 1" class="transition-all duration-500">
+                    <img [src]="tab.imgSrc" alt="" class="w-32 h-32 mb-6 rounded-lg shadow-md">
+                    <h3 class="text-3xl font-bold mb-4">{{tab.title}}</h3>
+                    <p class="leading-relaxed mb-4">{{tab.text}}</p>
+                </div>
             </div>
-            }
+        </div>
     </div>
 </div>

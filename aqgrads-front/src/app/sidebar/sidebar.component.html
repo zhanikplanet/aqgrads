@@ -1,28 +1,40 @@
-<div class="sidebar-container">
+<div class="fixed right-0 top-0 z-50">
+    <button (click)="visible2 = true"
+        class="fixed top-5 right-5 bg-green-500 hover:bg-green-600 rounded-full p-3 shadow-lg">
+        <img src="/assets/svg/menu.svg" alt="menu" class="w-8 h-8">
+    </button>
     <p-drawer [(visible)]="visible2" position="right">
-        <div class="sidebar-content">
-            <div class="sidebar-links">
-                <ul class="fz-18">
-                    <li>Жеке кабинет</li>
-                    <li>Біз туралы</li>
-                    <li>Тарифтік жоспар</li>
-                    <li>Қор жобалары</li>
+        <div class="bg-black text-white h-full flex flex-col p-6">
+
+            <nav class="flex-grow">
+                <ul class="space-y-4 text-lg">
+                    <li><a [routerLink]="'/profile'" (click)="closeMenuAfterScroll()" class="hover:text-green-400">Жеке кабинет</a></li>
+                    <li><a href="javascript:void(0)" (click)="scrollToAboutUs()" class="hover:text-green-400">Біз
+                            туралы</a></li>
+                    <li><a href="javascript:void(0)" (click)="scrollToPriceList()" class="hover:text-green-400">Тарифтік
+                            жоспар</a></li>
+                    <li><a href="javascript:void(0)" (click)="scrollToFuturePlans()" class="hover:text-green-400">Қор
+                            жобалары</a></li>
+                    <li><a href="javascript:void(0)" (click)="scrollToContactUs()" class="hover:text-green-400">Contact
+                            us</a></li>
                 </ul>
+            </nav>
+
+            <div class="flex justify-center gap-4 my-6">
+                <a [routerLink]="'/login'">
+                    <p-button icon="pi pi-user" label="Кіру" class="text-white font-semibold py-2 px-4 rounded-lg">
+                    </p-button>
+                </a>
+                <a [routerLink]="'/registration'" > 
+                    <p-button icon="pi pi-user-plus" label="Тіркелу"
+                        class=" text-white font-semibold py-2 px-4 rounded-lg">
+                    </p-button>
+                </a>
             </div>
-            <div class="sidebar-buttons">
-                <p-button icon="pi pi-iconName" label="Кіру"></p-button>
-                <p-button icon="pi pi-iconName" label="Тіркелу"></p-button>
-            </div>
-            <div class="sidebar-languages">
-                <ul>
-                    <li><a href="">KZ</a></li>
-                    <li><a href="">RU</a></li>
-                </ul>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="text-lg hover:text-gray-400">KZ</a>
+                <a href="#" class="text-lg hover:text-gray-400">RU</a>
             </div>
         </div>
     </p-drawer>
-
-    <p-button type="button" text="true" (click)="visible2 = true" class="sidebar-button">
-        <img src="/assets/svg/menu.svg" alt="menu">
-    </p-button>
 </div>

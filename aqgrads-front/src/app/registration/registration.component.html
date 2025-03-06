@@ -1,1 +1,88 @@
-<p>registration works!</p>
+<div class="flex items-center justify-center min-h-screen bg-gray-100 px-4 registration-container">
+  <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+      
+      <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">User Registration</h2>
+
+      <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)" class="space-y-4">
+          
+          <div>
+              <label for="fullname" class="block text-sm font-medium text-gray-600">ФИO</label>
+              <input 
+                  id="fullname"
+                  type="text"
+                  name="fullname"
+                  [(ngModel)]="user.fullName"
+                  placeholder="Enter your full name"
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+              />
+          </div>
+
+          <div>
+              <label for="graduateYear" class="block text-sm font-medium text-gray-600">Лицей бітірген жыл</label>
+              <input 
+                  id="graduateYear"
+                  type="text"
+                  name="graduateYear"
+                  [(ngModel)]="user.graduateYear"
+                  placeholder="Enter graduation year"
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+              />
+          </div>
+
+          <div>
+              <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+              <input 
+                  id="email"
+                  type="email"
+                  name="email"
+                  [(ngModel)]="user.email"
+                  placeholder="Enter your email"
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+              />
+          </div>
+
+          <div>
+              <label for="phoneNumber" class="block text-sm font-medium text-gray-600">Номер телефона</label>
+              <input 
+                  id="phoneNumber"
+                  type="text"
+                  name="phoneNumber"
+                  [(ngModel)]="user.phoneNumber"
+                  placeholder="Enter your phone number"
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+              />
+          </div>
+
+
+          <div>
+              <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
+              <input 
+                  id="password"
+                  type="password"
+                  name="password"
+                  [(ngModel)]="user.password"
+                  placeholder="Enter your password"
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none"
+              />
+          </div>
+
+
+          <div class="text-center">
+              <button type="submit" [disabled]="!myForm.valid" 
+                  class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition disabled:bg-gray-300">
+                  Тіркелу
+              </button>
+          </div>
+
+      </form>
+
+
+      <hr class="my-6 border-gray-300">
+
+      <p class="text-center text-sm text-gray-600">
+          Already have an account? 
+          <a [routerLink]="'/login'" class="text-green-500 hover:underline">Login</a>
+      </p>
+
+  </div>
+</div>

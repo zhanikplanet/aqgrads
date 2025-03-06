@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
-import { Card } from 'primeng/card';
+import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-future-plans',
-  imports: [Card,ButtonModule],
+  imports: [ButtonModule,CommonModule],
   templateUrl: './future-plans.component.html',
   styleUrl: './future-plans.component.scss'
 })
 export class FuturePlansComponent {
-  items=[
+  activeTab=1;
+  selectTab(tabIndex:number){
+    this.activeTab=tabIndex;
+  }
+  visible: boolean=false;
+  selectedItem: any = null;
+  tabs=[
     {
       imgSrc:'https://chelyabinsk.oboronmet.ru/upload/resize_cache/iblock/197/jizkcd2utt5knuskewqgpp3azl08azzb/284_284_2/instrumentalnye-stali-pokovka_.jpg',
       alt:'',
@@ -35,4 +41,8 @@ export class FuturePlansComponent {
       text:'xsrdctfvyuiokzetxrctyu rdctfvyuhi dcftvgybuiokpl tcfvygbuyhniokolp dctvfyuhijokol ctfvybuhiok fvygbuiom fvygbuiom fvygubinfom ctvfuybinomfzdsz9ioj h0ripgojzd o[jthigldf'
     }
   ]
+  showDialog(item: any) {
+    this.selectedItem = item;
+    this.visible = true;
+  }
 }
