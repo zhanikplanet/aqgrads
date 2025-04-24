@@ -1,48 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
+import { title } from 'node:process';
+import { subtle } from 'node:crypto';
 
 @Component({
   selector: 'app-future-plans',
-  imports: [ButtonModule,CommonModule],
   templateUrl: './future-plans.component.html',
-  styleUrl: './future-plans.component.scss'
+  styleUrl: './future-plans.component.scss',
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+    ]),
+    trigger('fadeInWithDelay', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('500ms 200ms ease-out', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
+  imports:[CommonModule]
 })
-export class FuturePlansComponent {
-  activeTab=1;
-  selectTab(tabIndex:number){
-    this.activeTab=tabIndex;
-  }
-  visible: boolean=false;
-  selectedItem: any = null;
-  tabs=[
+export class FuturePlansComponent implements OnInit {
+  projects = [
     {
-      imgSrc:'https://chelyabinsk.oboronmet.ru/upload/resize_cache/iblock/197/jizkcd2utt5knuskewqgpp3azl08azzb/284_284_2/instrumentalnye-stali-pokovka_.jpg',
-      alt:'',
-      title:'test 1',
-      text:'djsaipdjasid adsijafda dsjadpoasjdsa sadaspfmagfa 2ej1iojaspoma[maf'
+      title: "Активность",
+      subtitle: "UI & UX Designer",
+      imagePath: "https://images.pexels.com/photos/1845208/pexels-photo-1845208.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
     },
     {
-      imgSrc:'https://chelyabinsk.oboronmet.ru/upload/resize_cache/iblock/197/jizkcd2utt5knuskewqgpp3azl08azzb/284_284_2/instrumentalnye-stali-pokovka_.jpg',
-      alt:'',
-      title:'test 2',
-      text:'dasojfdapofkaf[akfaskfa faskfmaspfmapmfa go[pgamgoagoag knfjfFIJ[wfijkndlk fknFpifejaepigjapegnz'
+      title: "Олимпиада",
+      subtitle: "CEO Expert",
+      imagePath: "https://images.pexels.com/photos/36469/woman-person-flowers-wreaths.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
     },
     {
-      imgSrc:'https://chelyabinsk.oboronmet.ru/upload/resize_cache/iblock/197/jizkcd2utt5knuskewqgpp3azl08azzb/284_284_2/instrumentalnye-stali-pokovka_.jpg',
-      alt:'',
-      title:'test 3',
-      text:'xsrdctfvyuiokzetxrctyu rdctfvyuhi dcftvgybuiokpl tcfvygbuyhniokolp dctvfyuhijokol ctfvybuhiok fvygbuiom fvygbuiom fvygubinfom ctvfuybinomfzdsz9ioj h0ripgojzd o[jthigldf'
+      title: "Общяга",
+      subtitle: "Web Designer",
+      imagePath: "https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
     },
     {
-      imgSrc:'https://chelyabinsk.oboronmet.ru/upload/resize_cache/iblock/197/jizkcd2utt5knuskewqgpp3azl08azzb/284_284_2/instrumentalnye-stali-pokovka_.jpg',
-      alt:'',
-      title:'test 4',
-      text:'xsrdctfvyuiokzetxrctyu rdctfvyuhi dcftvgybuiokpl tcfvygbuyhniokolp dctvfyuhijokol ctfvybuhiok fvygbuiom fvygbuiom fvygubinfom ctvfuybinomfzdsz9ioj h0ripgojzd o[jthigldf'
+      title: "Школа",
+      subtitle: "Marketing Coordinator",
+      imagePath: "https://images.pexels.com/photos/247322/pexels-photo-247322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+    },
+    {
+      title: "Спорт",
+      subtitle: "",
+      imagePath: "/assets/img/sport.png"
     }
-  ]
-  showDialog(item: any) {
-    this.selectedItem = item;
-    this.visible = true;
-  }
+  ];
+
+  constructor() {}
+
+  ngOnInit(): void {}
 }

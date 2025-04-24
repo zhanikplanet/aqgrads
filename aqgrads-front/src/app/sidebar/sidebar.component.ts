@@ -1,96 +1,55 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { DrawerModule } from 'primeng/drawer';
 import { ButtonModule } from 'primeng/button';
 import { ScrollService } from '../shared/scroll.service';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
 @Component({
   selector: 'app-sidebar',
-  imports: [DrawerModule, ButtonModule, RouterModule],
+  imports: [DrawerModule, ButtonModule, RouterModule,CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit {
-  visible2: boolean = false;
+  menu: boolean = false;
+  isAuthentificated: boolean = false
 
-  constructor(private scrollService: ScrollService, private router: Router) { }
+  constructor(private scrollService: ScrollService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-    this.scrollService.scroll$.subscribe((section) => {
-      if (section === 'about-us-section') {
-        this.scrollToAboutUs();
-      }
-      else if (section === 'price-list-section') {
-        this.scrollToPriceList()
-      }
-      else if (section === 'future-plans-section') {
-        this.scrollToFuturePlans()
-      }
-      else if (section === 'contact-us-section') {
-        this.scrollToContactUs()
-      }
+    this.authService.loggedIn$.subscribe((isAuth) => {
+      this.isAuthentificated = isAuth;
     });
   }
 
-  closeMenuAfterScroll() {
-    setTimeout(() => {
-      this.visible2 = false;
-    }, 300);
+  activeLanguage = 'en';
+
+  languages = [
+    { code: 'en', label: 'EN' },
+    { code: 'ru', label: 'RU' },
+    { code: 'kz', label: 'KZ' }
+  ];
+
+  setLanguage(code: string) {
+    this.activeLanguage = code;
   }
 
-  scrollToAboutUs() {
-    if (this.router.url === '/') {
-      document.getElementById('about-us-section')?.scrollIntoView({ behavior: 'smooth' });
-      this.closeMenuAfterScroll();
-    }
-    else {
-      this.router.navigate(['/']).then(() => {
-        setTimeout(() => {
-          document.getElementById('about-us-section')?.scrollIntoView({ behavior: 'smooth' });
-          this.closeMenuAfterScroll();
-        }, 500)
-      })
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.isAuthentificated = false;
+      this.router.navigate(['']);
+      this.menu = false;
+    });
+  }
+
+  navigateToProfile() {
+    if (this.isAuthentificated) {
+      this.router.navigate(['/profile']);
+    } else {
+      this.router.navigate(['/login']);
     }
   }
-  scrollToPriceList() {
-    if (this.router.url === '/') {
-      document.getElementById('price-list-section')?.scrollIntoView({ behavior: 'smooth' });
-      this.closeMenuAfterScroll();
-    }
-    else {
-      this.router.navigate(['/']).then(() => {
-        setTimeout(() => {
-          document.getElementById('price-list-section')?.scrollIntoView({ behavior: 'smooth' });
-          this.closeMenuAfterScroll();
-        }, 500)
-      })
-    }
-  }
-  scrollToFuturePlans() {
-    if (this.router.url === '/') {
-      document.getElementById('future-plans-section')?.scrollIntoView({ behavior: 'smooth' });
-      this.closeMenuAfterScroll();
-    }
-    else {
-      this.router.navigate(['/']).then(() => {
-        setTimeout(() => {
-          document.getElementById('future-plans-section')?.scrollIntoView({ behavior: 'smooth' });
-          this.closeMenuAfterScroll();
-        }, 500)
-      })
-    }
-  }
-  scrollToContactUs() {
-    if (this.router.url === '/') {
-      document.getElementById('contact-us-section')?.scrollIntoView({ behavior: 'smooth' });
-      this.closeMenuAfterScroll();
-    }
-    else {
-      this.router.navigate(['/']).then(() => {
-        setTimeout(() =>{
-          document.getElementById('contact-us-section')?.scrollIntoView({ behavior: 'smooth' });
-          this.closeMenuAfterScroll();
-        },500)
-      })
-    }
-  }
+
 }

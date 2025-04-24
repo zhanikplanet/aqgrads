@@ -1,35 +1,40 @@
-<div class="relative w-full" id="about-us-section">
-    <div class="absolute inset-0 bg-cover bg-center bg-fixed" style="background-image: url('https://www.lyceum-arystan.kz/doc/en/small/540.jpg');"></div>
-    <div class="relative w-full bg-black bg-opacity-80 py-12 px-6 md:py-16 md:px-12 text-white">
-        <div class="max-w-5xl mx-auto text-center">
-            <div class="mb-6">
-                <p class="font-bold text-3xl md:text-4xl lg:text-5xl">"AqGrads"</p>
-                <p class="font-bold text-3xl md:text-4xl lg:text-5xl">Ақтөбе лицейі түлектерінің</p>
-                <p class="font-bold text-3xl md:text-4xl lg:text-5xl">қоғамдық қоры</p>
-            </div>
-            <div class="text-lg md:text-xl text-gray-300">
-                <p>Қазақ-Түрік Лицейі</p>
-                <p class="text-gray-400">(1993-2016)</p>
-                <p>Білім Инновация Лицейі</p>
-                <p class="text-gray-400">(2016 жылдан бері)</p>
-            </div>
-            <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 text-center">
-                <div>
-                    <p class="text-5xl md:text-6xl font-bold">1200</p>
-                    <hr class="w-16 mx-auto border-gray-500 my-2">
-                    <p class="text-gray-300 text-base md:text-lg">лицей түлектерінің саны</p>
-                </div>
-                <div>
-                    <p class="text-5xl md:text-6xl font-bold ">+150 млн</p>
-                    <hr class="w-16 mx-auto border-gray-500 my-2">
-                    <p class="text-gray-300 text-base md:text-lg">түлектермен жиналған қаржылай көмек</p>
-                </div>
-                <div>
-                    <p class="text-5xl md:text-6xl font-bold">2200</p>
-                    <hr class="w-16 mx-auto border-gray-500 my-2">
-                    <p class="text-gray-300 text-base md:text-lg">өткізілген спорттық және қоғамдық іс-шаралар саны</p>
-                </div>
-            </div>
-        </div>
+<div class="relative min-h-[700px] flex items-center">
+    <div
+      class="absolute inset-0 z-0"
+      [ngStyle]="{
+        'background-image': 'url(https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=2000)',
+        'background-size': 'cover',
+        'background-position': 'center'
+      }"
+    >
+      <div class="absolute inset-0 bg-black/70"></div>
     </div>
-</div>
+  
+    <div class="container mx-auto px-4 py-20 relative z-10 text-white">
+      <div
+        class="max-w-3xl mx-auto text-center"
+        @fadeInUp
+        @statStagger
+      >
+        <h1 class="text-6xl font-serif font-bold mb-6">
+          <span class="text-gold">Excellence</span> in Education
+        </h1>
+        <p class="text-xl text-gray-200 mb-12 leading-relaxed font-light">
+          Since 1995, Kazakh Turkish Lyceum has been dedicated to providing exceptional education
+          and fostering innovation in learning. Our journey continues with a
+          commitment to excellence and student success across Kazakhstan.
+        </p>
+  
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16">
+          <div
+            *ngFor="let stat of stats"
+            class="stat text-center"
+          >
+            <div class="text-4xl font-serif font-bold mb-2 text-gold">{{ stat.value }}</div>
+            <div class="text-sm uppercase tracking-wider text-gray-300">{{ stat.label }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

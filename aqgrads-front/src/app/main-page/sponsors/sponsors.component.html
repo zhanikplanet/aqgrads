@@ -1,0 +1,51 @@
+<section class="py-24 bg-gradient-to-b from-white to-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-4xl font-serif font-bold mb-4 text-gray-900">
+          Our Valued Partners
+        </h2>
+        <p class="text-gray-600 text-lg">
+          Together with our sponsors, we're shaping the future of education.
+        </p>
+      </div>
+  
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          *ngFor="let sponsor of sponsors"
+          class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+        >
+          <div class="p-8 flex flex-col items-center">
+            <div class="w-48 h-24 mb-6 relative flex items-center justify-center">
+              <img
+                [src]="sponsor.logo"
+                [alt]="sponsor.name"
+                class="max-w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              {{ sponsor.name }}
+            </h3>
+            <p class="text-yellow-600 font-medium mb-3">
+              {{ sponsor.contribution }}
+            </p>
+            <p class="text-gray-600 text-center mb-6">
+              {{ sponsor.description }}
+            </p>
+            <a
+              [href]="sponsor.website"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-2 rounded-md transition-all duration-300 hover:shadow-lg"
+            >
+              Visit Website
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13.828 10.172a4 4 0 015.657 5.656M15 15l4.243-4.243M4 4h16v16H4V4z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

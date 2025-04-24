@@ -1,10 +1,12 @@
-
-
-::ng-deep .p-drawer {
-    background: black !important;
-}
-
-::ng-deep .closeButton {
-    right: 0 !important;
-}
-
+:host {
+    display: block;
+  }
+  
+  .text-primary {
+    color: #000000; // Use your Tailwind primary color or override it
+  }
+  
+  .bg-primary {
+    background-color: #000000;
+  }
+  

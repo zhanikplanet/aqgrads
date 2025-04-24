@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,19 @@ export class LoginComponent {
     email: '',
     password: ''
   };
+  errorMessage = ''
 
-  constructor(private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService, private authService: AuthService, private router: Router) {}
 
-  onSubmit(user: { email: string; password: string }) {
-    this.toastr.show("User logged in successfully");
-    console.log(user);
+  onSubmit() {
+    this.authService.login({ email: this.user.email, password: this.user.password }).subscribe({
+      next: () => {
+        this.router.navigate(['profile']);
+      },
+      error: () => {
+        this.errorMessage = 'Invalid email or password';
+        this.toastr.error("Login failed. Please check your credentials.");
+      }
+    });
   }
 }

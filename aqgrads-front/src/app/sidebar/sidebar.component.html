@@ -1,40 +1,50 @@
-<div class="fixed right-0 top-0 z-50">
-    <button (click)="visible2 = true"
-        class="fixed top-5 right-5 bg-green-500 hover:bg-green-600 rounded-full p-3 shadow-lg">
-        <img src="/assets/svg/menu.svg" alt="menu" class="w-8 h-8">
-    </button>
-    <p-drawer [(visible)]="visible2" position="right">
-        <div class="bg-black text-white h-full flex flex-col p-6">
-
-            <nav class="flex-grow">
-                <ul class="space-y-4 text-lg">
-                    <li><a [routerLink]="'/profile'" (click)="closeMenuAfterScroll()" class="hover:text-green-400">Жеке кабинет</a></li>
-                    <li><a href="javascript:void(0)" (click)="scrollToAboutUs()" class="hover:text-green-400">Біз
-                            туралы</a></li>
-                    <li><a href="javascript:void(0)" (click)="scrollToPriceList()" class="hover:text-green-400">Тарифтік
-                            жоспар</a></li>
-                    <li><a href="javascript:void(0)" (click)="scrollToFuturePlans()" class="hover:text-green-400">Қор
-                            жобалары</a></li>
-                    <li><a href="javascript:void(0)" (click)="scrollToContactUs()" class="hover:text-green-400">Contact
-                            us</a></li>
-                </ul>
-            </nav>
-
-            <div class="flex justify-center gap-4 my-6">
-                <a [routerLink]="'/login'">
-                    <p-button icon="pi pi-user" label="Кіру" class="text-white font-semibold py-2 px-4 rounded-lg">
-                    </p-button>
-                </a>
-                <a [routerLink]="'/registration'" > 
-                    <p-button icon="pi pi-user-plus" label="Тіркелу"
-                        class=" text-white font-semibold py-2 px-4 rounded-lg">
-                    </p-button>
-                </a>
-            </div>
-            <div class="flex justify-center space-x-4">
-                <a href="#" class="text-lg hover:text-gray-400">KZ</a>
-                <a href="#" class="text-lg hover:text-gray-400">RU</a>
-            </div>
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 shadow-md">
+          <img src="/assets/logo.svg" alt="KTL Logo" class="h-full w-full object-cover" />
         </div>
-    </p-drawer>
-</div>
+        <div class="flex flex-col">
+          <span class="text-xl font-serif font-bold text-primary">Kazakh Turkish</span>
+          <span class="text-xs text-gray-500 -mt-1">Lyceum</span>
+        </div>
+      </div>
+  
+      <div class="flex items-center gap-6">
+        <div class="flex items-center bg-gray-100 rounded-full p-1">
+          <button
+            *ngFor="let lang of languages"
+            (click)="setLanguage(lang.code)"
+            class="px-3 py-1 text-sm rounded-full transition-colors"
+            [ngClass]="{
+              'bg-primary text-white shadow-sm': activeLanguage === lang.code,
+              'text-gray-600 hover:text-primary': activeLanguage !== lang.code
+            }"
+          >
+            {{ lang.label }}
+          </button>
+        </div>
+  
+        <div class="flex items-center gap-2">
+          <button class="flex items-center gap-2 px-4 py-2 text-sm rounded hover:bg-gray-100 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v4"></path>
+              <path d="M10 14L21 3"></path>
+              <path d="M21 3v0"></path>
+              <path d="M3 10v11a1 1 0 0 0 1 1h11"></path>
+            </svg>
+            Sign In
+          </button>
+          <button class="flex items-center gap-2 px-4 py-2 text-sm rounded bg-primary text-white hover:bg-primary/90 shadow-md transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M5 12h14"></path>
+            </svg>
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+  

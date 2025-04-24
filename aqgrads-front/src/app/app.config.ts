@@ -7,21 +7,27 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
+import { AuthService } from '../service/auth.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(),
     provideAnimationsAsync(),
-     provideZoneChangeDetection({ eventCoalescing: true }), 
-     provideRouter(routes, withComponentInputBinding()), 
-     provideClientHydration(withEventReplay()),
-     providePrimeNG({
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes, withComponentInputBinding()),
+    provideClientHydration(withEventReplay()),
+    providePrimeNG({
       theme: {
         preset: Aura,
-        options:{
-          darkModeSelector:false || 'none'
+        options: {
+          darkModeSelector: false || 'none'
         }
       },
     }),
-    provideToastr()
-    ]
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideToastr(),
+    AuthService
+  ]
 };

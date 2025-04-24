@@ -1,69 +1,73 @@
 <div class="flex flex-wrap justify-center gap-8" id="price-list-section">
-    @for (item of items; track item.title; let i = $index) {
-    <div
-        class="bg-white border border-gray-300 shadow-lg rounded-xl p-6 w-full sm:w-[48%] lg:w-[30%] transition-transform transform hover:scale-105">
-        <div class="overflow-hidden rounded-lg">
-            <img [src]="item.imgSrc" alt="Card" class="w-full object-cover rounded-md" />
-        </div>
-        <div class="text-center my-4">
-            <p class="text-xl font-bold text-gray-800">{{ item.title }}</p>
-            <p class="text-gray-500">{{ item.subtitle }}</p>
-        </div>
-        <div class="flex justify-center mt-4">
-            <button
-                class="bg-green-500 text-white text-lg font-semibold py-2 px-6 rounded-full hover:bg-green-600 transition"
-                (click)="showDialog(i)">
-                Жазылу
-            </button>
-        </div>
-    </div>
-
-    <p-dialog header="{{ item.title }}" [modal]="true" [visible]="activeDialog === i"
-        (visibleChange)="onDialogVisibilityChange($event, i)"
-        [style]="{ width: '25rem', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)' }">
-        <span class="text-gray-600 block mb-6">
-            Сіз <b>{{ item.title }}</b> пакетін таңдадыңыз. {{item.subtitle}}
-        </span>
-
-      
-        <div class="flex items-center gap-4 mb-4">
-            <label for="name-{{ i }}" class="font-semibold w-24">Name</label>
-            <input pInputText [(ngModel)]="userData.name" id="username-{{ i }}"
-                class="flex-auto border border-gray-300 rounded-lg px-3 py-2 text-gray-700 font-medium shadow-sm focus:ring  transition" />
+    <section class="py-6 bg-gray-50">
+        <div class="text-center mb-5">
+            <h2 class="text-3xl font-serif font-bold">Choose Your Plan</h2>
+            <p class="text-gray-600">Select the subscription plan that best fits your educational needs.</p>
         </div>
 
-        <div class="flex items-center gap-4 mb-4">
-            <label for="surname-{{ i }}" class="font-semibold w-24">Surname</label>
-            <input pInputText [(ngModel)]="userData.surname" id="surname-{{ i }}"
-                class="flex-auto border border-gray-300 rounded-lg px-3 py-2 text-gray-700 font-medium shadow-sm focus:ring  transition" />
-        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-4">
+            <ng-container *ngFor="let sub of subscriptions; let i = index">
+                <p-card header="{{ sub.name }}" subheader="{{ sub.price }}/month" class="shadow-md rounded-xl">
+                    <ng-template pTemplate="header">
+                        <img [src]="sub.image" alt="{{ sub.name }}" class="w-full h-48 object-cover rounded-t-xl" />
+                    </ng-template>
 
-        <div class="flex items-center gap-4 mb-4">
-            <label for="graduated-year-{{ i }}" class="font-semibold w-24">Graduated Year</label>
-            <input type="text" maxlength="4" [(ngModel)]="userData.graduatedYear" id="graduated-year-{{ i }} "
-                class="no-spinner flex-auto border border-gray-300 rounded-lg px-3 py-2 text-gray-700 font-medium shadow-sm focus:ring  transition" (keydown)="validateNumber($event)" />
-        </div>
+                    <ul class="mt-4 space-y-2">
+                        <li *ngFor="let feature of sub.features">
+                            <span class="text-yellow-500 mr-2">•</span> {{ feature }}
+                        </li>
+                    </ul>
 
-        <div class="flex items-center gap-4 mb-4">
-            <label for="phone-number-{{ i }}" class="font-semibold w-24">Phone number</label>
-            <input type="tel" placeholder="+7 (XXX) XXX-XXXX" [(ngModel)]="phoneNumber" (input)="formatPhoneNumber($event)" (keydown)="validateNumber($event)" id="phone-number-{{ i }}"
-                class="flex-auto border border-gray-300 rounded-lg px-3 py-2 text-gray-700 font-medium shadow-sm focus:ring  transition" />
-        </div>
+                    <button pButton type="button"
+                        class="w-full mt-6 py-2 px-4 text-white font-semibold rounded-xl bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black transition duration-300 shadow-lg"
+                        (click)="openDialog(i)">
+                        Subscribe Now
+                    </button>
 
-        <div class="flex items-center gap-4 mb-6">
-            <label for="email-{{ i }}" class="font-semibold w-24">Email</label>
-            <input pInputText [(ngModel)]="userData.email" id="email-{{ i }}"
-                class="flex-auto border border-gray-300 rounded-lg px-3 py-2 text-gray-700 font-medium shadow-sm focus:ring  transition" />
+                </p-card>
+            </ng-container>
         </div>
+        <p-dialog [(visible)]="dialogVisible" [modal]="true" [style]="{ width: '400px' }" [closable]="false">
+            <!-- Close Button in Top Right Corner -->
+            <button (click)="dialogVisible = false" class="absolute top-2 right-2 p-2  text-black rounded-full transition duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor">
+                  <path fill-rule="evenodd" d="M6.293 4.293a1 1 0 011.414 0L10 6.586l2.293-2.293a1 1 0 111.414 1.414L11.414 8l2.293 2.293a1 1 0 01-1.414 1.414L10 9.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 8 6.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
 
-       
-        <div class="flex justify-end gap-2">
-            <p-button label="Болдырмау" severity="secondary" class="rounded-lg px-4 py-2"
-                (click)="activeDialog = null" />
-            <p-button label="Растау" class="rounded-lg px-4 py-2   text-white transition"
-                (click)="activeDialog = null" />
-        </div>
-    </p-dialog>
+            <div class="mb-4 text-center text-lg font-serif font-bold text-gray-800">
+                <span class="text-xl">Subscribe to</span> {{ selectedPlan?.name }}
+            </div>
 
-    }
+            <div class="space-y-4">
+                <div>
+                    <label for="name" class="block text-gray-700 font-medium">Full Name</label>
+                    <input id="name" type="text" pInputText placeholder="John Doe"
+                        class="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black" />
+                </div>
+
+                <div>
+                    <label for="email" class="block text-gray-700 font-medium">Email</label>
+                    <input id="email" type="email" pInputText placeholder="john@example.com"
+                        class="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black" />
+                </div>
+
+                <div>
+                    <label for="phone" class="block text-gray-700 font-medium">Phone</label>
+                    <input id="phone" type="tel" pInputText placeholder="+7 700 123 4567"
+                        class="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black" />
+                </div>
+
+                <!-- Button Fix -->
+                <button pButton
+                    class="w-full bg-black text-white py-3 rounded-md hover:bg-gray-800 transition duration-300 text-center"
+                    style="line-height: 1.5rem; font-weight: bold;">
+                    Complete Subscription
+                </button>
+            </div>
+        </p-dialog>
+
+
+    </section>
+
 </div>
