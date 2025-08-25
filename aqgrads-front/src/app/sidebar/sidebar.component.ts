@@ -1,28 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { DrawerModule } from 'primeng/drawer';
 import { ButtonModule } from 'primeng/button';
 import { ScrollService } from '../shared/scroll.service';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-sidebar',
-  imports: [DrawerModule, ButtonModule, RouterModule,CommonModule],
+  standalone: true,
+  imports: [DrawerModule, ButtonModule, RouterModule, CommonModule, TranslateModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit {
   menu: boolean = false;
-  isAuthentificated: boolean = false
-
-  constructor(private scrollService: ScrollService, private router: Router, private authService: AuthService) { }
-
-  ngOnInit() {
-    this.authService.loggedIn$.subscribe((isAuth) => {
-      this.isAuthentificated = isAuth;
-    });
-  }
-
+  isAuthentificated: boolean = false;
   activeLanguage = 'en';
 
   languages = [
@@ -31,10 +25,33 @@ export class SidebarComponent implements OnInit {
     { code: 'kz', label: 'KZ' }
   ];
 
-  setLanguage(code: string) {
-    this.activeLanguage = code;
+  constructor(
+    private scrollService: ScrollService,
+    private router: Router,
+    private authService: AuthService,
+    private translate: TranslateService,
+    private location: Location
+  ) {}
+
+  ngOnInit() {
+    const path = this.location.path(); 
+    const urlLang = path.split('/')[1];
+    const lang = ['en', 'ru', 'kz'].includes(urlLang) ? urlLang : 'en';
+
+    this.activeLanguage = lang;
+    this.translate.setDefaultLang(lang);
+    this.translate.use(lang);
+
+    this.authService.loggedIn$.subscribe((isAuth) => {
+      this.isAuthentificated = isAuth;
+    });
   }
 
+  setLanguage(code: string) {
+    this.activeLanguage = code;
+    this.translate.use(code);
+    this.router.navigate(['/', code]);
+  }
 
   logout() {
     this.authService.logout().subscribe(() => {
@@ -46,10 +63,9 @@ export class SidebarComponent implements OnInit {
 
   navigateToProfile() {
     if (this.isAuthentificated) {
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/', this.activeLanguage, 'profile']);
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/', this.activeLanguage, 'login']);
     }
   }
-
 }

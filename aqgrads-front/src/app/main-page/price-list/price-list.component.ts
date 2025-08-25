@@ -56,4 +56,8 @@ export class PriceListComponent {
     this.selectedPlan = this.subscriptions[index];
     this.dialogVisible = true;
   }
+
+  // onSubmit(){
+  //   this.
+  // }
 }

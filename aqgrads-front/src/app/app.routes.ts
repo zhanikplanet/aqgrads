@@ -7,16 +7,22 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from '../guard/auth.guard';
 
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: 'registration', component: RegistrationComponent },
-    {
-      path: '', 
-      component: LayoutComponent,
-      children: [
-        { path: '', component: MainPageComponent },
-        { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
-      ]
-    },
-    { path: '**', redirectTo: 'login' } 
-  ];
-  
+  { path: 'login', component: LoginComponent },
+  { path: 'registration', component: RegistrationComponent },
+  {
+    path: ':lang',
+    children: [
+      {
+        path: '',
+        component: LayoutComponent,
+        children: [
+          { path: '', component: MainPageComponent },
+          { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
+        ]
+      },
+    ]
+  },
+  { path: '', redirectTo: '/ru', pathMatch: 'full' },
+  //{ path: '**', redirectTo: 'login' }
+];
+

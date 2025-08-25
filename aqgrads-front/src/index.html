@@ -9,6 +9,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-  <app-root></app-root>
+  <body>
+  <app-root style="display: none"></app-root>
+  <script>
+    window.addEventListener('load', () => {
+      document.querySelector('app-root').style.display = 'block';
+    });
+  </script>
+</body>
 </body>
 </html>
