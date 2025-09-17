@@ -1,17 +1,28 @@
 import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
-import {DialogModule} from 'primeng/dialog'
+import { DialogModule } from 'primeng/dialog'
 import { CommonModule } from '@angular/common';
+import { SubscribeService } from '../../../service/subscribe.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-price-list',
   templateUrl: './price-list.component.html',
   styleUrls: ['./price-list.component.scss'],
-  imports:[CardModule,DialogModule,CommonModule]
+  imports: [CardModule, DialogModule, CommonModule,FormsModule]
 })
 export class PriceListComponent {
+
+  constructor(private subscribeService: SubscribeService) { }
+
   dialogVisible = false;
   selectedPlan: any = null;
+
+  userData = {
+    name: '',
+    email: '',
+    phone: ''
+  };
 
   subscriptions = [
     {
@@ -57,7 +68,23 @@ export class PriceListComponent {
     this.dialogVisible = true;
   }
 
-  // onSubmit(){
-  //   this.
-  // }
+  onSubscribe() {
+    if (!this.selectedPlan) return;
+
+    const payload = {
+      plan: this.selectedPlan,
+      user: this.userData
+    };
+
+    this.subscribeService.completeSubscription(payload).subscribe({
+      next: (res) => {
+        console.log('Subscribed successfully:', res);
+        this.dialogVisible = false;
+        this.userData = { name: '', email: '', phone: '' }; // очистка формы
+      },
+      error: (err) => {
+        console.error('Subscription failed:', err);
+      }
+    });
+  }
 }
