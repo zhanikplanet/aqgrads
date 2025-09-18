@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
+import { TranslateModule,TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-jumbotron',
   templateUrl: './jumbotron.component.html',
-  imports:[CommonModule],
+  imports:[CommonModule,TranslateModule],
   styleUrls: ['./jumbotron.component.scss'],
   animations: [
     trigger('fadeInUp', [
@@ -26,15 +28,30 @@ import { trigger, style, transition, animate, query, stagger } from '@angular/an
     ])
   ]
 })
-export class JumbotronComponent implements OnInit {
-  stats = [
-    { label: 'Founded', value: '1995' },
-    { label: 'Alumni', value: '15,000+' },
-    { label: 'Current Students', value: '2,500+' },
-    { label: 'Events Held', value: '1,200+' }
-  ];
+export class JumbotronComponent implements OnInit,OnDestroy {
+stats: { labelKey: string; value: string }[] = [];
+  langChangeSub!: Subscription;
 
-  constructor() {}
+  constructor(private translate: TranslateService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadStats();
+
+    this.langChangeSub = this.translate.onLangChange.subscribe(() => {
+      this.loadStats();
+    });
+  }
+
+  loadStats(): void {
+    this.stats = [
+      { labelKey: this.translate.instant('Landing-Page.Jumbotron.FOOTER.FOUNDED'), value: '1995' },
+      { labelKey: this.translate.instant('Landing-Page.Jumbotron.FOOTER.ALUMNI'), value: '15,000+' },
+      { labelKey: this.translate.instant('Landing-Page.Jumbotron.FOOTER.CURRENT_STUDENTS'), value: '2,500+' },
+      { labelKey: this.translate.instant('Landing-Page.Jumbotron.FOOTER.EVENTS_HELD'), value: '1,200+' }
+    ];
+  }
+
+  ngOnDestroy(): void {
+    this.langChangeSub.unsubscribe();
+  }
 }

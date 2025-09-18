@@ -1,16 +1,23 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { environment } from "../environments/environment";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+export interface MailRequest {
+  toEmail: string;
+  subject: string;
+  body: string;
+}
 
 @Injectable({
-    providedIn:'root'   
+  providedIn: 'root'
 })
-export class MailService{
-    constructor(private http: HttpClient){}
-    private api_url = environment.apiUrl + '/mail';
+export class MailService {
 
-    sendMail(mailData: any): Observable<any>{
-        return this.http.post(`${this.api_url}/send-mail`, mailData, {withCredentials: true});
-    }
+  private apiUrl = 'https://localhost:7258/api/email/send';
+
+  constructor(private http: HttpClient) {}
+
+  sendMail(request: MailRequest): Observable<any> {
+    return this.http.post<any>(this.apiUrl, request);
+  }
 }

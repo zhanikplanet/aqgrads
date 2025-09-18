@@ -1,6 +1,125 @@
 {
+  "Landing-Page": {
     "Nav": {
-        "TITLE": "Kazakh Turkish Lyceum",
-        "HELLO": "Hello, {{name}}!"
+      "TITLE": "Kazakh-Turkish Lyceum",
+      "HELLO": "Hello, {{name}}!",
+      "SIGN_IN": "Sign In",
+      "SIGN_UP": "Sign Up"
+    },
+    "Jumbotron": {
+      "TITLE": "Excellence in Education",
+      "BODY": "Since 1995, the Kazakh-Turkish Lyceum has been providing exceptional education and promoting innovation in learning. Our journey continues with a commitment to excellence and the success of our students worldwide.",
+      "FOOTER": {
+        "FOUNDED": "Founded",
+        "ALUMNI": "Alumni Graduated",
+        "CURRENT_STUDENTS": "Current Students",
+        "EVENTS_HELD": "Events Held"
+      }
+    },
+    "Plans": {
+      "HEADER": "Choose your plan",
+      "SUBHEADER": "Select the subscription plan that best fits your educational needs.",
+      "CARD_HEADER": {
+        "BASIC": "Basic Plan",
+        "STANDARD": "Standard Plan",
+        "PREMIUM": "Premium Plan"
+      },
+      "CARD_PRICE": {
+        "BASIC": "1993₸/month",
+        "STANDARD": "4990₸/month",
+        "PREMIUM": "10990₸/month"
+      },
+      "CARD_BODY": {
+        "BASIC_1": "Access to basic courses",
+        "BASIC_2": "Library resources",
+        "BASIC_3": "Online support, all core features",
+        "STANDARD_1": "All Basic features",
+        "STANDARD_2": "Premium courses",
+        "STANDARD_3": "1-on-1 tutoring",
+        "PREMIUM_1": "All Standard features",
+        "PREMIUM_2": "Career counseling",
+        "PREMIUM_3": "Certification program"
+      },
+      "CARD_BUTTON": "Subscribe Now",
+      "CARD_DIALOG_TITLE": "Subscribe to",
+      "CARD_DIALOG_NAME_LABEL": "Full Name",
+      "CARD_DIALOG_PHONE_LABEL": "Phone",
+      "CARD_DIALOG_BUTTON": "Complete subscription",
+      "CANCELATION": {
+        "HEADER": "Need to cancel?",
+        "BODY": "Click here to manage your subscription"
+      }
+    },
+    "Projects": {
+      "HEADER": "Where Your Support Goes",
+      "SUBHEADER": "We strive for transparent allocation of funds, ensuring that your subscription directly contributes to enhancing education quality and student success.",
+      "CARD_HEADER": {
+        "ACTIVITY": "Activity",
+        "OLYMPIAD": "Olympiad",
+        "DORMITORY": "Dormitory",
+        "SCHOOL": "School",
+        "SPORTS": "Sports"
+      },
+      "CARD_BODY": {
+        "UI_UX_DESIGNER": "UI & UX Designer",
+        "CEO_EXPERT": "CEO Expert",
+        "WEB_DESIGNER": "Web Designer",
+        "MARKETING_COORDINATOR": "Marketing Coordinator",
+        "OTHER": "Other"
+      }
+    },
+    "Partners": {
+      "HEADER": "Our Valued Partners",
+      "SUBHEADER": "Together with our sponsors, we are shaping the future of education.",
+      "CARD_HEADER": {
+        "TECHCORP": "TechCorp",
+        "EDUTECH": "EduTech",
+        "FUTURE_LABS": "Future Labs",
+        "INNOVATION_INC": "Innovation Inc",
+        "GLOBAL_ED": "Global Ed",
+        "LEARN_CO": "Learn Co"
+      },
+      "CARD_SUBHEADER": {
+        "TECHCORP": "Technology Partner",
+        "EDUTECH": "Educational Resources",
+        "FUTURE_LABS": "Innovation Partner",
+        "INNOVATION_INC": "Research Support",
+        "GLOBAL_ED": "International Programs",
+        "LEARN_CO": "Scholarship Funding"
+      },
+      "CARD_BODY": {
+        "TECHCORP": "Providing cutting-edge educational technology solutions.",
+        "EDUTECH": "Supporting digital learning and resource development initiatives.",
+        "FUTURE_LABS": "Advancing STEM education through innovative programs.",
+        "INNOVATION_INC": "Funding groundbreaking research projects and student initiatives.",
+        "GLOBAL_ED": "Supporting international exchange programs and cultural initiatives.",
+        "LEARN_CO": "Ensuring access to education through scholarships."
+      },
+      "CARD_FOOTER": "Visit Website"
+    },
+    "Contact": {
+      "CONTACT_HEADER": "Contacts",
+      "CONTACT_LABEL_NAME": "Full Name",
+      "CONTACT_LABEL_MESSAGE": "Message",
+      "CONTACT_BUTTON": "Send"
+    },
+    "FOOTER": {
+      "NAVIGATION": "Navigation",
+      "NAV_ITEMS": {
+        "ABOUT_US": "About Us",
+        "PRICE_LIST": "Price List",
+        "FUTURE_PLANS": "Future Plans",
+        "CONTACT_US": "Contact Us"
+      },
+      "DOCUMENTS": "Documents",
+      "DOC_ITEMS": {
+        "DOC1": "Test 1",
+        "DOC2": "Test 2",
+        "DOC3": "Test 3",
+        "DOC4": "Test 4"
+      },
+      "ADDRESS": "Address",
+      "COPYRIGHT": "© 2025 Aqgrads. All rights reserved."
     }
+  }
 }

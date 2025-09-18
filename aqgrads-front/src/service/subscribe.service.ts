@@ -7,11 +7,11 @@ import { environment } from "../environments/environment";
     providedIn:'root'
 })
 export class SubscribeService{
-    private apiUrl = environment.apiUrl + '/subscribe';
+    private apiUrl = environment.apiUrl + 'SubscriptionInfo/CreateSubscription';
     constructor (private http : HttpClient){
     }
 
     completeSubscription(subscriptionData: any): Observable<any> {
-        return this.http.post(`${this.apiUrl}/complete`,subscriptionData, {withCredentials: true})
+        return this.http.post(`${this.apiUrl}`,subscriptionData, {withCredentials: true})
     }
 }

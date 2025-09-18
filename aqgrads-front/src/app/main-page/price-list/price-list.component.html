@@ -1,32 +1,35 @@
 <div class="flex flex-wrap justify-center gap-8" id="price-list-section">
     <section class="py-6 bg-gray-50">
         <div class="text-center mb-5">
-            <h2 class="text-3xl font-serif font-bold">Choose Your Plan</h2>
-            <p class="text-gray-600">Select the subscription plan that best fits your educational needs.</p>
+            <h2 class="text-3xl font-serif font-bold">{{'Landing-Page.Plans.HEADER' | translate}}</h2>
+            <p class="text-gray-600">{{'Landing-Page.Plans.SUBHEADER' | translate}}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-4">
             <ng-container *ngFor="let sub of subscriptions; let i = index">
-                <p-card header="{{ sub.name }}" subheader="{{ sub.price }}/month" class="shadow-md rounded-xl">
+                <p-card header="{{ sub.nameKey | translate }}" subheader="{{ sub.price | translate }}"
+                    class="shadow-md rounded-xl">
                     <ng-template pTemplate="header">
-                        <img [src]="sub.image" alt="{{ sub.name }}" class="w-full h-48 object-cover rounded-t-xl" />
+                        <img [src]="sub.image" alt="{{ sub.nameKey | translate }}"
+                            class="w-full h-48 object-cover rounded-t-xl" />
                     </ng-template>
 
                     <ul class="mt-4 space-y-2">
                         <li *ngFor="let feature of sub.features">
-                            <span class="text-yellow-500 mr-2">•</span> {{ feature }}
+                            <span class="text-yellow-500 mr-2">•</span> {{ feature | translate }}
                         </li>
                     </ul>
 
                     <button pButton type="button"
                         class="w-full mt-6 py-2 px-4 text-white font-semibold rounded-xl bg-gradient-to-r from-black to-gray-800 hover:from-gray-800 hover:to-black transition duration-300 shadow-lg"
                         (click)="openDialog(i)">
-                        Subscribe Now
+                        {{ 'Landing-Page.Plans.CARD_BUTTON' | translate }}
                     </button>
-
                 </p-card>
             </ng-container>
         </div>
+
+
         <p-dialog [(visible)]="dialogVisible" [modal]="true" [style]="{ width: '400px' }" [closable]="false">
             <button (click)="dialogVisible = false"
                 class="absolute top-2 right-2 p-2  text-black rounded-full transition duration-300">
@@ -39,12 +42,12 @@
             </button>
 
             <div class="mb-4 text-center text-lg font-serif font-bold text-gray-800">
-                <span class="text-xl">Subscribe to</span> {{ selectedPlan?.name }}
+                <span class="text-xl">{{'Landing-Page.Plans.CARD_DIALOG_TITLE' | translate}}</span> {{ selectedPlan?.nameKey }}
             </div>
 
             <div class="space-y-4">
                 <div>
-                    <label for="name" class="block text-gray-700 font-medium">Full Name</label>
+                    <label for="name" class="block text-gray-700 font-medium">{{'Landing-Page.Plans.CARD_DIALOG_NAME_LABEL' | translate}}</label>
                     <input id="name" type="text" pInputText placeholder="John Doe" [(ngModel)]="userData.name"
                         class="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black" />
                 </div>
@@ -57,7 +60,7 @@
                 </div>
 
                 <div>
-                    <label for="phone" class="block text-gray-700 font-medium">Phone</label>
+                    <label for="phone" class="block text-gray-700 font-medium">{{'Landing-Page.Plans.CARD_DIALOG_PHONE_LABEL' | translate}}</label>
                     <input id="phone" type="tel" pInputText placeholder="+7 700 123 4567" [(ngModel)]="userData.phone"
                         class="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black" />
                 </div>
@@ -65,8 +68,8 @@
                 <button pButton (click)="onSubscribe()"
                     class="w-full bg-black text-white py-3 rounded-md hover:bg-gray-800 transition duration-300 text-center"
                     style="line-height: 1.5rem; font-weight: bold;">
-                    Complete Subscription
-                </button> 
+                    {{'Landing-Page.Plans.CARD_DIALOG_BUTTON' | translate}}
+                </button>
             </div>
         </p-dialog>
 

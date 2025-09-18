@@ -1,48 +1,56 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MailService } from '../../../service/mail.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MailService, MailRequest } from '../../../service/mail.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-contact',
-  imports: [ReactiveFormsModule],
+  standalone: true,
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss'
+  styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
 
   form!: FormGroup;
 
-  ngOnInit(): void {
-    this.buildForm();
-  }
+  constructor(
+    private fb: FormBuilder,
+    private mailService: MailService,
+    private translate: TranslateService
+  ) {}
 
-  constructor(private formBuilder: FormBuilder, private mailService: MailService) { }
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', Validators.required]
+    });
+  }
 
   send(): void {
     if (this.form.invalid) {
-      alert('Please fill in all required fields');
+      alert(this.translate.instant('ContactForm.Errors.FillAllFields'));
       return;
     }
+
     const { name, email, message } = this.form.value;
 
-    this.mailService.sendMail({ name, email, message }).subscribe({
-      next: (response) => {
-        console.log('Mail sent successfully', response);
-        alert('Message sent successfully!');
+    const payload: MailRequest = {
+      toEmail: 'zhanik.planet1@gmail.com',
+      subject: `Message from ${name} (${email})`,
+      body: message
+    };
+
+    this.mailService.sendMail(payload).subscribe({
+      next: () => {
+        alert(this.translate.instant('ContactForm.Success'));
         this.form.reset();
       },
-      error: (error) => {
-        console.error('Error sending mail', error);
-        alert('Failed to send message. Please try again later.');
+      error: (err) => {
+        console.error('Error sending mail', err);
+        alert(this.translate.instant('ContactForm.Failed'));
       }
     });
   }
-
-  private buildForm(): void {
-    this.form = this.formBuilder.group({
-      name: this.formBuilder.control(null),
-      email: this.formBuilder.control(null),
-      message: this.formBuilder.control(null),
-    });
-  }
-
 }
